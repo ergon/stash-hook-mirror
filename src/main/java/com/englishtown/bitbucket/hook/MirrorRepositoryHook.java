@@ -14,7 +14,6 @@ import com.atlassian.bitbucket.server.ApplicationPropertiesService;
 import com.atlassian.bitbucket.setting.Settings;
 import com.atlassian.bitbucket.setting.SettingsValidationErrors;
 import com.atlassian.bitbucket.setting.SettingsValidator;
-import com.google.common.collect.ImmutableSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,14 +34,6 @@ public class MirrorRepositoryHook implements PostRepositoryHook<RepositoryHookRe
     static final String SETTING_TAGS = "tags";
     static final String SETTING_NOTES = "notes";
     static final String SETTING_ATOMIC = "atomic";
-
-    /**
-     * Trigger types that don't cause a mirror to happen
-     */
-    private static Set<RepositoryHookTrigger> TRIGGERS_TO_IGNORE =
-            ImmutableSet.of(
-                    StandardRepositoryHookTrigger.UNKNOWN
-            );
 
     private final PasswordEncryptor passwordEncryptor;
     private final SettingsReflectionHelper settingsReflectionHelper;
@@ -81,7 +72,7 @@ public class MirrorRepositoryHook implements PostRepositoryHook<RepositoryHookRe
      */
     @Override
     public void postUpdate(@Nonnull PostRepositoryHookContext context, @Nonnull RepositoryHookRequest request) {
-        if (TRIGGERS_TO_IGNORE.contains(request.getTrigger())) {
+        if (StandardRepositoryHookTrigger.UNKNOWN == request.getTrigger()) {
             logger.trace("MirrorRepositoryHook: skipping trigger {}", request.getTrigger());
             return;
         }

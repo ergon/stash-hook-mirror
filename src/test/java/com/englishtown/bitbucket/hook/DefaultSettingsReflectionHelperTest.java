@@ -1,7 +1,6 @@
 package com.englishtown.bitbucket.hook;
 
 import com.atlassian.bitbucket.setting.Settings;
-import com.google.common.collect.ImmutableMap;
 import org.junit.Test;
 
 import javax.annotation.Nonnull;
@@ -39,7 +38,7 @@ public class DefaultSettingsReflectionHelperTest {
         private final Map<String, Object> values;
 
         public TestSettings(Map<String, Object> values) {
-            this.values = ImmutableMap.copyOf(values);
+            this.values = new HashMap<>(values);
         }
 
         @Nullable

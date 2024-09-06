@@ -4,7 +4,7 @@
 
     <groupId>com.englishtown</groupId>
     <artifactId>stash-hook-mirror</artifactId>
-    <version>3.3.2-SNAPSHOT</version>
+    <version>9.0.0</version>
 
     <organization>
         <name>EF Learning Labs</name>
@@ -29,9 +29,9 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
-        <bitbucket.version>8.4.0</bitbucket.version>
+        <bitbucket.version>9.0.0</bitbucket.version>
         <bitbucket.test.version>${bitbucket.version}</bitbucket.test.version>
-        <amps.version>8.6.0</amps.version>
+        <amps.version>9.0.2</amps.version>
     </properties>
 
     <dependencyManagement>
@@ -134,24 +134,6 @@
             </releases>
         </pluginRepository>
     </pluginRepositories>
-
-    <scm>
-        <connection>scm:git:git@github.com:ef-labs/stash-hook-mirror.git</connection>
-        <developerConnection>scm:git:git@github.com:ef-labs/stash-hook-mirror.git</developerConnection>
-        <url>https://github.com/ef-labs/stash-hook-mirror</url>
-        <tag>HEAD</tag>
-    </scm>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>etown-nexus-snapshots</id>
-            <url>https://nexus2.eflabs.io/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>etown-nexus-releases</id>
-            <url>https://nexus2.eflabs.io/content/repositories/releases</url>
-        </repository>
-    </distributionManagement>
 
     <issueManagement>
         <system>Github Issues</system>

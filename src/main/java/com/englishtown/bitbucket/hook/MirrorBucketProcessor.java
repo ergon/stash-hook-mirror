@@ -11,7 +11,6 @@ import com.atlassian.bitbucket.scm.ScmService;
 import com.atlassian.bitbucket.scm.git.command.GitCommandExitHandler;
 import com.atlassian.bitbucket.server.ApplicationPropertiesService;
 import com.atlassian.bitbucket.user.SecurityService;
-import com.google.common.base.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -100,9 +99,9 @@ public class MirrorBucketProcessor implements BucketProcessor<MirrorRequest> {
         }
 
         // Add refspec args
-        String refspecs = Strings.isNullOrEmpty(settings.refspec) ? DEFAULT_REFSPEC : settings.refspec;
+        String refspecs = (settings.refspec == null || settings.refspec.isEmpty()) ? DEFAULT_REFSPEC : settings.refspec;
         for (String refspec : refspecs.split("\\s|\\n")) {
-            if (!Strings.isNullOrEmpty(refspec)) {
+            if (!(refspec == null || refspec.isEmpty())) {
                 builder.argument(refspec);
             }
         }
